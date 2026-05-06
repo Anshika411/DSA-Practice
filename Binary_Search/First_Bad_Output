@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Mock API (for local testing)
+int bad = 4; // change this to test different cases
+
+bool isBadVersion(int version) {
+    return version >= bad;
+}
+
+// Your solution
+class Solution {
+public:
+    int firstBadVersion(int n) {
+        int low = 1, high = n;
+        while (low < high) {
+            int mid = low + (high - low) / 2;
+            if (isBadVersion(mid)) {
+                high = mid;
+            } else {
+                low = mid + 1;
+            }
+        }
+        return low;
+    }
+};
+
+int main() {
+    Solution obj;
+    int n = 10;
+
+    cout << "First bad version: " << obj.firstBadVersion(n) << endl;
+    return 0;
+}
