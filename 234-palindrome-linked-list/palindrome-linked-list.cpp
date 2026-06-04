@@ -12,23 +12,22 @@ class Solution {
 public:
     bool isPalindrome(ListNode* head) {
         vector<int> arr;
-        ListNode* temp=head;
-        while(temp!=nullptr){
+        ListNode* temp = head;
+        while (temp != nullptr) {
             arr.push_back(temp->val);
-            temp=temp->next;
+            temp = temp->next;
         }
-        int n=arr.size();
-        int start=0;
-        int end=n-1;
-        while(start<end){
-            if(arr[start]==arr[end]){
+        int n = arr.size();
+        int start = 0;
+        int end = n - 1;
+        while (start <= end) {
+            if (arr[start] == arr[end]) {
                 start++;
                 end--;
-            }
-            else{
+            } else {
                 return false;
             }
         }
-        return true;    
+        return true;
     }
 };
