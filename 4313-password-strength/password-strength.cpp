@@ -1,7 +1,7 @@
 class Solution {
 public:
     int passwordStrength(string password) {
-        int n = password.length();
+        
         unordered_set<char>set;
         for( char ch:password) {
             set.insert(ch);
