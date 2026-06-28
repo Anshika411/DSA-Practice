@@ -9,8 +9,7 @@ public:
                         continue;     
                     }
                     else{
-                        swap(nums[j],nums[i]); 
-                        break;
+                        swap(nums[j],nums[i]);         
                     }
                 }
             }
