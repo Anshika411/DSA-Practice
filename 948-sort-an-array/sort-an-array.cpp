@@ -1,36 +1,27 @@
 class Solution {
 public:
-    int partition(vector<int>& nums, int low, int high) {
-        int randomIndex = low + random() % (high - low + 1);
-        swap(nums[randomIndex], nums[high]);
+    vector<int> sortArray(vector<int>& nums) {
+        int n = nums.size();
 
-        int pivot = nums[high];
-        int i = low - 1;
-
-        for (int j = low; j < high; j++) {
-            if (nums[j] < pivot) {
-                i++;
-                swap(nums[i], nums[j]);
-            }
+        int mini = INT_MAX, maxi = INT_MIN;
+        for(int i=0; i<n; i++){
+            mini = min(mini, nums[i]);
+            maxi = max(maxi, nums[i]);
         }
 
-        swap(nums[i + 1], nums[high]);
-        return i + 1;
-    }
+        vector<int> freq(maxi-mini+1, 0);
+        for(auto &num: nums){
+            freq[num - mini] ++; 
+        }
 
-    void quickSort(vector<int>& nums, int low, int high) {
-        if (low >= high)
-            return;
-
-        int pivotIndex = partition(nums, low, high);
-
-        quickSort(nums, low, pivotIndex - 1);
-        quickSort(nums, pivotIndex + 1, high);
-    }
-
-    vector<int> sortArray(vector<int>& nums) {
-        srand(time(0));
-        quickSort(nums, 0, nums.size() - 1);
+        int idx = 0;
+        for(int num=0; num<freq.size(); num++){
+            while(freq[num] > 0){
+                nums[idx] = num + mini;
+                freq[num] --;
+                idx ++;
+            }
+        }
         return nums;
     }
 };
