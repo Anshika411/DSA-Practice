@@ -1,19 +1,16 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        vector<int> hash(26, 0);
-
-        for (char c:magazine) {
-            hash[c - 'a']++;
+        unordered_map<char, int> hash;
+        for (char c : magazine) {
+            hash[c]++;
         }
-
-        for (char c:ransomNote) {
-            if (hash[c - 'a'] == 0) {
+        for (char c : ransomNote) {
+            if (hash[c] == 0) {
                 return false;
             }
-            hash[c - 'a']--;
+            hash[c]--;
         }
-
         return true;
     }
 };
