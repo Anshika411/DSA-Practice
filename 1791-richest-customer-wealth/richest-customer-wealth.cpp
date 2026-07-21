@@ -1,19 +1,21 @@
 class Solution {
 public:
     int maximumWealth(vector<vector<int>>& accounts) {
-        int n = accounts.size();  // no. of people
-        int m = accounts[0].size();
-        int sum = 0;
-        int maxsum = INT_MIN;
+        if (accounts.empty())
+            return 0;
 
-        for(int i = 0; i<n; i++){
-            for(int j = 0; j<m; j++){
-                sum+=accounts[i][j];   
+        int n = accounts.size(); //no. of person
+        int m = accounts[0].size();
+        int maxWealth = 0;
+
+        for (int i = 0; i < n; i++) {
+            int currWealth = 0;
+            for (int j = 0; j < m; j++) {
+                currWealth += accounts[i][j];
             }
-            maxsum = max(maxsum,sum);
-            sum = 0;
+            maxWealth = max(maxWealth, currWealth);
         }
 
-        return maxsum;
+        return maxWealth;
     }
 };
