@@ -19,9 +19,7 @@ public:
                 }
             }
         }
-        if (st.empty()) {
-            return true;
-        }
-        return false;
+        
+        return st.empty();
     }
 };
